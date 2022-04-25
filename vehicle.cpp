@@ -38,9 +38,9 @@ void Vehicle::Accelerate(int secondsDelta) {};
 
 void Vehicle::Decelerate(int secondsDelta) {};
 
-Road MetricGUI::CreateRoad(std::string name, double locx, double locy, double len, Heading hdg)
+Road* MetricGUI::CreateRoad(std::string name, double locx, double locy, double len, Heading hdg)
 	{
-		return *(new Road(name, locx / Constants::MetersToKm, locy / Constants::MetersToKm, len / Constants::MetersToKm, hdg));
+		return new Road(name, locx / Constants::MetersToKm, locy / Constants::MetersToKm, len / Constants::MetersToKm, hdg);
 	}
 
 double MetricGUI::GetSpeed(Vehicle &v){
@@ -50,8 +50,8 @@ void MetricGUI::SetSpeedLimit(Vehicle &v, double speed){
 	v.SetDesiredSpeed(speed/Constants::MpsToKph);
 }
 
-Road ImperialGUI::CreateRoad(std::string name, double locx, double locy, double len, Heading hdg){
-    return *(new Road(name, locx / Constants::MetersToMiles, locy / Constants::MetersToMiles, len / Constants::MetersToMiles, hdg));
+Road* ImperialGUI::CreateRoad(std::string name, double locx, double locy, double len, Heading hdg){
+    return new Road(name, locx / Constants::MetersToMiles, locy / Constants::MetersToMiles, len / Constants::MetersToMiles, hdg);
 }
 
 double ImperialGUI::GetSpeed(Vehicle& v){

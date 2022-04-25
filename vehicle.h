@@ -62,7 +62,7 @@ class ISimInput {
 class GUI : public ISimInput, public ISimOutput {
 
 	public:
-		virtual Road CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) = 0;
+		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) = 0;
 		virtual double GetSpeed(Vehicle& v) = 0;
 		virtual void SetSpeedLimit(Vehicle& v, double speed) {};
 
@@ -71,7 +71,7 @@ class GUI : public ISimInput, public ISimOutput {
 class MetricGUI : public GUI {
 
 	public:
-		Road CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) override;
+		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) override;
 		double GetSpeed(Vehicle& v) override;
 		void SetSpeedLimit(Vehicle& v, double speed) override;
 
@@ -80,7 +80,7 @@ class MetricGUI : public GUI {
 class ImperialGUI : public GUI {
 
 	public:
-		Road CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) override;
+		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) override;
 		double GetSpeed(Vehicle& v) override;
 		void SetSpeedLimit(Vehicle& v, double speed) override;
 
