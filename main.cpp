@@ -22,6 +22,24 @@ int main(){
 	ifstream loadfile;
 	loadfile.open("./JSONinput.json");
 	map.Load(ld, loadfile);
+	
+	simInput = new MetricGUI();
+    Road *Uptown = simInput->CreateRoad("Uptown", 0.0, -0.09, .180, North);
+    map.AddRoad(Uptown);
+    Road *Crosstown = simInput->CreateRoad("Crosstown", -0.09, 0.0, .180, East);
+    map.AddRoad(Crosstown);
+    StopSign *sign = simInput->CreateStopSign(.01);
+    Crosstown->AddRoadItem(sign);
+    StopSign *sign2 = simInput->CreateStopSign(.23);
+    Uptown->AddRoadItem(sign2);
+    StopSign *sign3 = simInput->CreateStopSign(.32);
+    Uptown->AddRoadItem(sign3);
+    StopSign *sign4 = simInput->CreateStopSign(.302);
+    Uptown->AddRoadItem(sign4);
+    SpeedLimit *limit = simInput->CreateSpeedLimit(80.0, .02);
+    Crosstown->AddRoadItem(limit);
+    SpeedLimit *limit2 = simInput->CreateSpeedLimit(50.0, .123);
+    Uptown->AddRoadItem(limit2);
 
 		// Display map
 	CharMatrix *cm = new CharMatrix();
@@ -39,23 +57,7 @@ int main(){
 	savefile.open("./JSONoutput.json");
 	map.Save(sd, savefile);
 
-    simInput = new MetricGUI();
-    Road *Uptown = simInput->CreateRoad("Uptown", 0.0, -0.09, .180, North);
-    map.AddRoad(Uptown);
-    Road *Crosstown = simInput->CreateRoad("Crosstown", -0.09, 0.0, .180, East);
-    map.AddRoad(Crosstown);
-    StopSign *sign = simInput->CreateStopSign(.01);
-    Crosstown->AddRoadItem(sign);
-    StopSign *sign2 = simInput->CreateStopSign(.23);
-    Uptown->AddRoadItem(sign2);
-    StopSign *sign3 = simInput->CreateStopSign(.32);
-    Uptown->AddRoadItem(sign3);
-    StopSign *sign4 = simInput->CreateStopSign(.302);
-    Uptown->AddRoadItem(sign4);
-    SpeedLimit *limit = simInput->CreateSpeedLimit(80.0, .02);
-    Crosstown->AddRoadItem(limit);
-    SpeedLimit *limit2 = simInput->CreateSpeedLimit(50.0, .123);
-    Uptown->AddRoadItem(limit2);
+
 
 	return 0;
 }
