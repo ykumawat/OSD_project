@@ -61,3 +61,19 @@ double ImperialGUI::GetSpeed(Vehicle& v){
 void ImperialGUI::SetSpeedLimit(Vehicle& v, double speed){
 	v.SetDesiredSpeed(speed/Constants::MpsToMph);
 }
+
+StopSign* MetricGUI::CreateStopSign(double location){
+    return new StopSign(location);
+}
+
+StopSign* ImperialGUI::CreateStopSign(double location){
+    return new StopSign(location);
+}
+
+SpeedLimit* MetricGUI::CreateSpeedLimit(double speed, double location){
+    return new SpeedLimit(speed, location);
+}
+
+SpeedLimit* ImperialGUI::CreateSpeedLimit(double speed, double location){
+    return new SpeedLimit(speed, location);
+}

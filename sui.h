@@ -4,6 +4,7 @@
 #include "conversions.h"
 #include "constants.h"
 #include "vehicle.h"
+#include "roadItem.h"
 
 class GUI;
 class ImperialGUI;
@@ -35,5 +36,37 @@ class ConsolePrint : public IPrintDriver{
         void PrintCar(Car car, Container o);
 };
 
+class ISaveDriver {
+    public:
+        virtual void SaveMap(Map *map, ostream& stream) = 0;
+        virtual void SaveRoad(Road *road, ostream& stream) = 0;
+        virtual void SaveStopSign(StopSign *roadItem, ostream& stream) = 0;
+        virtual void SaveSpeedLimit(SpeedLimit *roadItem, ostream& stream) = 0;
+};
+
+class JsonMapSave : public ISaveDriver {
+    public:
+        void SaveMap(Map *map, ostream& stream) override;
+        void SaveRoad(Road *road, ostream& stream) override;
+        void SaveStopSign(StopSign *roadItem, ostream& stream) override;
+        void SaveSpeedLimit(SpeedLimit *roadItem, ostream& stream) override;
+};
+
+class ILoadDriver {
+    public:
+        virtual void LoadMap(Map *map, istream& stream) = 0;
+        virtual void LoadRoad(Road *road, istream& stream) = 0;
+        virtual void LoadStopSign(StopSign *roadItem, ostream& stream) = 0;
+        virtual void LoadSpeedLimit(SpeedLimit *roadItem, ostream& stream) = 0;
+};
+
+class JsonMapLoad : public ILoadDriver {
+    public:
+        void LoadMap(Map *map, istream& stream) override;
+        void LoadRoad(Road *road, istream& stream) override;
+        void LoadStopSign(StopSign *roadItem, ostream& stream) override;
+        void LoadSpeedLimit(SpeedLimit *roadItem, ostream& stream) override;
+        bool GetString(string * str, istream& stream);
+};
 
 #endif 

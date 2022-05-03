@@ -2,6 +2,7 @@
 #define ROAD_H_
 
 #include "JSON.h"
+#include "roadItem.h"
 
 class IPrintDriver;
 class Container;
@@ -35,13 +36,9 @@ class Road{
 		Heading GetHeading();
 		std::string GetRoadName();
 
-			//public void AddRoadItem(RoadItem roadItem);
+		void AddRoadItem(RoadItem *roadItem);
 
 		void Print(IPrintDriver* print, Container *o);
-
-			//    private void InsertNewItemBefore(RoadItem current, RoadItem newItem);
-
-			//    private void InsertNewItemAfter(RoadItem current, RoadItem newItem);
 
 		void Save(JSONSave* sv, ostream& str);
 		void Load(JSONLoad* ld, istream& str);

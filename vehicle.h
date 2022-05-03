@@ -46,44 +46,43 @@ class Truck : public Vehicle {
 	};
 
 class ISimOutput {
-
 	public:
 		virtual double GetSpeed(Vehicle& v) = 0;
-
-	};
+};
 
 class ISimInput {
-
 	public:
-		virtual void SetSpeedLimit(Vehicle& v, double speed) = 0;
-
-	};
+		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) = 0;
+		virtual void SetSpeedLimit(Vehicle &v, double speed) = 0;
+		virtual SpeedLimit* CreateSpeedLimit(double speed, double location) = 0;
+		virtual StopSign* CreateStopSign(double location) = 0;
+};
 
 class GUI : public ISimInput, public ISimOutput {
-
 	public:
 		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) = 0;
 		virtual double GetSpeed(Vehicle& v) = 0;
 		virtual void SetSpeedLimit(Vehicle& v, double speed) {};
-
-	};
+		virtual SpeedLimit* CreateSpeedLimit(double speed, double location) = 0;
+		virtual StopSign* CreateStopSign(double location) = 0;
+};
 
 class MetricGUI : public GUI {
-
 	public:
 		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) override;
 		double GetSpeed(Vehicle& v) override;
 		void SetSpeedLimit(Vehicle& v, double speed) override;
-
-	};
+		virtual SpeedLimit* CreateSpeedLimit(double speed, double location) override;
+		virtual StopSign* CreateStopSign(double location) override;
+};
 
 class ImperialGUI : public GUI {
-
 	public:
 		virtual Road* CreateRoad(std::string name, double locx, double locy, double len, Heading hdg) override;
 		double GetSpeed(Vehicle& v) override;
 		void SetSpeedLimit(Vehicle& v, double speed) override;
-
-	};
+		virtual SpeedLimit* CreateSpeedLimit(double speed, double location) override;
+		virtual StopSign* CreateStopSign(double location) override;
+};
 
 #endif
