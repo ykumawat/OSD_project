@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <istream>
+#include "roadItem.h"
 
 using namespace std;
 
@@ -14,6 +15,8 @@ class JSONSave
 public:
 	void SaveMap(Map* map, ostream& str);
 	void SaveRoad(Road* rd, ostream& str);
+	void SaveStopSign(StopSign* ss, ostream& str);
+	void SaveSpeedLimit(SpeedLimit* sl, ostream& str);
 	//friend ostream& operator<<(ostream& stream, const Road& road);
 };
 

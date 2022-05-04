@@ -36,6 +36,7 @@ Heading Road::GetHeading() { return heading; }
 std::string Road::GetRoadName() { return name; }
 
 void Road::AddRoadItem(RoadItem *roadItem) {
+    
 }
 
 void Road::Print(IPrintDriver* print, Container* o){
@@ -70,6 +71,10 @@ void SpeedLimit::Save(ISaveDriver *sd, ostream& stream){
 
 void StopSign::Save(ISaveDriver *sd, ostream& stream){
     sd->SaveStopSign(this, stream);
+}
+
+double StopSign::GetDistance(){
+    return distance;
 }
 
 double RoadItem::GetMileMarker(){

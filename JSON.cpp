@@ -1,6 +1,8 @@
 #include "JSON.h"
 #include "map.h"
 #include "road.h"
+#include "roadItem.h"
+
 #include <vector>
 #include <iostream>
 #include <stdio.h>
@@ -11,7 +13,7 @@ void JSONSave::SaveMap(Map *map, ostream& stream)
 	stream << "\"Roads\":";
 	stream << "[" << endl;
 	vector<Road*> roads = map->GetRoad();
-	cout << roads.size();
+
 	int i = 0;
 	for (Road* road : roads) {
 		road->Save(this, stream);
@@ -41,10 +43,16 @@ void JSONSave::SaveRoad(Road *road, ostream& stream)
 	return;
 }
 
-/*ostream& operator<<(ostream& stream, const Road* road)
+void JSONSave::SaveStopSign(StopSign* ss, ostream& stream)
 {
-	stream << road->GetHeading();
-}*/
+	stream << "\"RoadItems\":" << ss->GetDistance();
+}
+
+void JSONSave::SaveSpeedLimit(SpeedLimit* sl, ostream& stream)
+{
+	stream << "\"RoadItems\":" << sl->GetSpeedLimit();
+}
+
 
 void JSONLoad::LoadMap(Map *map, istream& stream)
 {
@@ -75,8 +83,6 @@ void JSONLoad::LoadMap(Map *map, istream& stream)
 		identifier = identifier.substr(1,identifier.size()-3);
 		if (identifier == "Roads")
 		{
-			//getline(stream, identifier);
-			//symbol = identifier[identifier.size()-1];
 			symbol = tempSym;
 			if (symbol != '[')
 				{
@@ -115,10 +121,6 @@ void JSONLoad::LoadRoad(Road *road, istream& stream)
 		identifier = "";
 		getline(stream, identifier, ':');
 		symbol = ':';
-		//else
-		//{
-		//	return;
-		//}
 		if (symbol != ':')
 		{
 			return;

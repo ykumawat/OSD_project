@@ -25,6 +25,7 @@ class StopSign : public StaticRoadItem {
     public:
         StopSign(double dist);
         virtual void Save(ISaveDriver *sd, ostream& stream) override;
+        double GetDistance();
 };
 
 class SpeedLimit : public StaticRoadItem {
