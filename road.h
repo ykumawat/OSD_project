@@ -37,6 +37,8 @@ class Road{
 		std::string GetRoadName();
 
 		void AddRoadItem(RoadItem *roadItem);
+		// void InsertNewRoadItemBefore(RoadItem *currentRoadItem, RoadItem *previousItem);
+		// void InsertNewRoadItemAfter(RoadItem *currentRoadItem, RoadItem *nextItem);
 
 		void Print(IPrintDriver* print, Container *o);
 

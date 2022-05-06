@@ -42,6 +42,7 @@ class ISaveDriver {
         virtual void SaveRoad(Road *road, ostream& stream) = 0;
         virtual void SaveStopSign(StopSign *roadItem, ostream& stream) = 0;
         virtual void SaveSpeedLimit(SpeedLimit *roadItem, ostream& stream) = 0;
+        virtual void SaveTrafficLight(TrafficLight *roadItem, ostream& stream) = 0;
 };
 
 class JsonMapSave : public ISaveDriver {
@@ -50,6 +51,7 @@ class JsonMapSave : public ISaveDriver {
         void SaveRoad(Road *road, ostream& stream) override;
         void SaveStopSign(StopSign *roadItem, ostream& stream) override;
         void SaveSpeedLimit(SpeedLimit *roadItem, ostream& stream) override;
+        void SaveTrafficLight(TrafficLight *roadItem, ostream& stream) override;
 };
 
 class ILoadDriver {
@@ -58,6 +60,7 @@ class ILoadDriver {
         virtual void LoadRoad(Road *road, istream& stream) = 0;
         virtual void LoadStopSign(StopSign *roadItem, ostream& stream) = 0;
         virtual void LoadSpeedLimit(SpeedLimit *roadItem, ostream& stream) = 0;
+        virtual void LoadTrafficLight(TrafficLight *roadItem, ostream& stream) = 0;
 };
 
 class JsonMapLoad : public ILoadDriver {
@@ -66,6 +69,7 @@ class JsonMapLoad : public ILoadDriver {
         void LoadRoad(Road *road, istream& stream) override;
         void LoadStopSign(StopSign *roadItem, ostream& stream) override;
         void LoadSpeedLimit(SpeedLimit *roadItem, ostream& stream) override;
+        void LoadTrafficLight(TrafficLight *roadItem, ostream& stream) override;
         bool GetString(string * str, istream& stream);
 };
 

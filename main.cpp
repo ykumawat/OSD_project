@@ -1,5 +1,4 @@
 // using namespace std;
-
 #include <iostream>
 #include <string>
 #include <list>
@@ -10,6 +9,7 @@
 #include "vehicle.h"
 #include "map.h"
 #include "road.h"
+#include "simulation.h"
 
 
 int main(){
@@ -57,7 +57,15 @@ int main(){
 	savefile.open("./JSONoutput.json");
 	map.Save(sd, savefile);
 
+	Simulation Sim = Simulation();
+	TrafficLight *t1 = new TrafficLight(7, 2, 5, "green", 0.0, "1");
+	TrafficLight *t2 = new TrafficLight(7, 2, 5, "red", 0.0, "2");
+	Sim.addDynamicRoadItem(t1);
+	Sim.addDynamicRoadItem(t2);
 
+	for (int i = 0; i < 20; i++) {
+		Sim.Update(1);
+	}
 
 	return 0;
 }

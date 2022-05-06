@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 #ifndef ROADITEM_H
 #define ROADITEM_H
@@ -36,6 +37,27 @@ class SpeedLimit : public StaticRoadItem {
     public:
         SpeedLimit(double speed, double dist);
         double GetSpeedLimit();
+        virtual void Save(ISaveDriver *sd, ostream& stream) override;
+};
+
+class DynamicRoadItem : public RoadItem {
+    public:
+        virtual void Update(int seconds) = 0;
+        virtual void Save(ISaveDriver *sd, ostream& stream) = 0;
+};
+
+class TrafficLight : public DynamicRoadItem {
+    private:
+        int redTime;
+        int yellowTime;
+        int greenTime;
+        int timeOn;
+        double mileMarker;
+        string currentColor;
+        string name;
+    public:
+        TrafficLight(int redT, int yellowT, int greenT, string startColor, double mm, string trafficLightNum);
+        virtual void Update(int seconds) override;
         virtual void Save(ISaveDriver *sd, ostream& stream) override;
 };
 
